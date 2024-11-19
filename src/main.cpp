@@ -25,5 +25,14 @@ void loop()
   duration = pulseIn(echoPin, HIGH);
   distance = duration * 0.034 / 2;
   Serial.println(distance);
+   
+  if (distance < 50)
+  {
+    digitalWrite(spacePin, LOW);
+  }
+  else
+  {
+    digitalWrite(spacePin, HIGH);
+  }
   delay(1);
 }
