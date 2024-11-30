@@ -34,5 +34,5 @@ void loop()
   {
     digitalWrite(spacePin, HIGH);
   }
-  delay(1);
+  delay(100);
 }
