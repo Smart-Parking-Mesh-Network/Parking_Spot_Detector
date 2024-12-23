@@ -1,6 +1,11 @@
 #include <Arduino.h>
 
-// SRF04-05 Module
+// Defines
+#define DISTANCE 170
+
+// Variables
+const int greenLed = 4;
+const int redLed = 5;
 const int trigPin = 9;
 const int echoPin = 8;
 const int spacePin = 12;
@@ -11,8 +16,10 @@ void setup()
 {
   pinMode(trigPin, OUTPUT);
   pinMode(spacePin, OUTPUT);
+  pinMode(greenLed, OUTPUT);
+  pinMode(redLed, OUTPUT);
   pinMode(echoPin, INPUT);
-  Serial.begin(9600);
+  // Serial.begin(9600);
 }
 void loop()
 {
@@ -24,15 +31,19 @@ void loop()
   digitalWrite(trigPin, LOW);
   duration = pulseIn(echoPin, HIGH);
   distance = duration * 0.034 / 2;
-  Serial.println(distance);
+  // Serial.println(distance);
    
-  if (distance < 50)
+  if (distance < DISTANCE)
   {
     digitalWrite(spacePin, LOW);
+    digitalWrite(redLed, HIGH);
+    digitalWrite(greenLed, LOW);
   }
   else
   {
     digitalWrite(spacePin, HIGH);
+    digitalWrite(redLed, LOW);
+    digitalWrite(greenLed, HIGH);
   }
   delay(100);
 }
